@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Marks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mark</th>
+      <th>Subject</th>
+      <th>Student</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @marks.each do |mark| %>
+      <tr>
+        <td><%= mark.mark %></td>
+        <td><%= Subject.find(mark.subject_id).name %></td>
+        <td><%= Student.find(mark.student_id).name%></td>
+        <td><%= link_to 'Show', mark %></td>
+        <%if current_user.has_role? :teacher%>
+        <td><%= link_to 'Edit', edit_mark_path(mark) %></td>
+        <%end%>
+         <%if current_user.has_role? :teacher%>
+        <td><%= link_to 'Destroy', mark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+ <%if current_user.has_role? :teacher%>
+<%= link_to 'New Mark', new_mark_path %>
+<%end%>

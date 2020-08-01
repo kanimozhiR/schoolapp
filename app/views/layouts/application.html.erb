@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Schoolproject</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+       <p class="notice"><%= notice %></p>
+       <p class="navbar-text float-right">
+<% if user_signed_in? %>
+  Logged in as <strong><%= current_user.email %></strong>.
+  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+<% else %>
+  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+<% end %>
+</p>
+<table border = "1">
+  
+  <tr>
+    <th><%= link_to "Class", klasses_path,:class => 'navbar-link' %><br></br>
+    <%= link_to "Subject", subjects_path,:class => 'navbar-link' %><br></br>
+    <%= link_to "Students", students_path,:class => 'navbar-link' %><br></br>
+    <%= link_to "Teachers", teachers_path,:class => 'navbar-link' %><br></br>
+    <%= link_to "Marks", marks_path,:class => 'navbar-link' %>
+
+  </th>
+      
+  <td>
+    <%= yield %></td>
+  </tr>
+</table>
+    
+
+  </body>
+</html>

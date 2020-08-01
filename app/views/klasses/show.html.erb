@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @klass.name %>
+</p>
+ <%if current_user.has_role? :admin%>
+<%= link_to 'Edit', edit_klass_path(@klass) %> | <%end%>
+<%= link_to 'Back', klasses_path %>

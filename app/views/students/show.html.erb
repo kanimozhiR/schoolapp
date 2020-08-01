@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Student Id:</strong>
+  <%= @student.student_id %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @student.name %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @student.age %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @student.gender %>
+</p>
+
+<p>
+  <strong>Klass:</strong>
+  <%= Klass.find(@student.klass_id).name %>
+</p>
+ <%if current_user.has_role? :admin%>
+<%= link_to 'Edit', edit_student_path(@student) %> | <%end%>
+<%= link_to 'Back', students_path %>

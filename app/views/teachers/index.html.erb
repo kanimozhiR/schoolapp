@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Teachers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Subject Code</th>
+      <th>Subject</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teachers.each do |teacher| %>
+      <tr>
+        <td><%= teacher.name %></td>
+        <td><%= teacher.email %></td>
+        <td><%= teacher.phone %></td>
+         <td><%= Subject.find(teacher.subject_id).subject_code%></td>
+        <td><%= Subject.find(teacher.subject_id).name %></td>
+        <td><%= link_to 'Show', teacher %></td>
+        <%if current_user.has_role? :admin%>
+        <td><%= link_to 'Edit', edit_teacher_path(teacher) %></td>
+        <%end%>
+        <%if current_user.has_role? :admin%>
+        <td><%= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%if current_user.has_role? :admin%>
+<%= link_to 'New Teacher', new_teacher_path %>
+<%end%>

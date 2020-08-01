@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @teacher.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @teacher.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @teacher.phone %>
+</p>
+
+<p>
+  <strong>Subject Code:</strong>
+  <%= Subject.find(@teacher.subject_id).subject_code %>
+</p>
+<p>
+  <strong>Subject:</strong>
+  <%= Subject.find(@teacher.subject_id).name %>
+</p>
+ <%if current_user.has_role? :admin%>
+<%= link_to 'Edit', edit_teacher_path(@teacher) %> | <%end%>
+<%= link_to 'Back', teachers_path %>
