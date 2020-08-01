@@ -6,8 +6,7 @@ validates_presence_of :student_id, :message=> "Enter Student ID"
 validates_presence_of :name, :message=> "Enter  Name"
 validates_presence_of :age, :message=> "Enter Age"
 validates_presence_of :gender, :message=> "Enter gender"
-
-validates_uniqueness_of :name
+validates_uniqueness_of :student_id,:message=> "Enter Student ID should be unique"
 
   def total_marks
   	@total_mark = Student.find(self.id).marks.pluck("sum(mark) as mark_sum").first
