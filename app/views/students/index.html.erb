@@ -29,8 +29,6 @@
         <td><%= link_to 'Show', student %></td>
         <%if current_user.has_role? :admin%>
           <td><%= link_to 'Edit', edit_student_path(student) %></td>
-        <%end%>
-        <%if current_user.has_role? :admin%>
           <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %>
         <%end%>
         </td>
